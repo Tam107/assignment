@@ -1,0 +1,40 @@
+<div class="form">
+    <form action="/login" method="post" class="form__content">
+        <h1 class="form__title">Email System</h1>
+
+        <!-- Display error message if it exists -->
+        <% if (error) { %>
+            <p class="error" style="color: red; font-weight: bold;">
+                <%= error %>
+            </p>
+            <% } %>
+
+                <div class="form__div form__div-one">
+                    <div class="form__icon">
+                        <i class='bx bx-user-circle'></i>
+                    </div>
+
+                    <div class="form__div-input">
+
+                        <input type="email" name="email" class="form__input" required placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form__div">
+                    <div class="form__icon">
+                        <i class='bx bx-lock'></i>
+                    </div>
+
+                    <div class="form__div-input">
+
+                        <input type="password" name="password" class="form__input" required placeholder="Password">
+                    </div>
+                </div>
+
+
+
+                <input type="submit" class="form__button" value="Login">
+
+                <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+    </form>
+</div>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/inbox.css">
+    <title>Inbox - <%= user.fullname %>
+    </title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="side-bar">
+            <a href="/email/compose" class="compose-link">Compose Email</a> |
+            <a href="/email/outbox" class="outbox-link">Outbox</a>
+        </div>
+        <div class="inbox-container">
+            <a href="/logout" class="logout-link">Sign out</a>
+            <h2 class="inbox-title">Inbox - <%= user.fullname %>
+            </h2>
+            <div id="message" style="display: none; color: green; margin-bottom: 10px;"></div>
+
+            <!-- Delete Button -->
+            <button id="deleteButton" class="delete-button">Delete Selected Emails</button>
+
+            <table class="email-table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>User</th>
+                        <th>Subject</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% emails.forEach(email=> { %>
+                        <tr class="email-item" data-email-id="<%= email.id %>">
+                            <td>
+                                <input type="checkbox" class="email-checkbox" />
+                            </td>
+                            <td class="email-sender">
+                                <%= email.sender %>
+                            </td>
+                            <td class="email-details">
+                                <a href="/email/<%= email.id %>" class="email-subject">
+                                    <%= email.subject || "(no subject)" %>
+                                </a>
+                            </td>
+                            <td class="email-time" data-timestamp="<%= email.created_at %>">
+                                <%= email.created_at %>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+
+            <!-- Pagination Links -->
+            <div class="pagination">
+                <% if (currentPage> 1) { %>
+                    <a href="/email/inbox?page=<%= currentPage - 1 %>" class="pagination-link">Previous</a>
+                    <% } %>
+
+                        <% for (let i=1; i <=totalPages; i++) { %>
+                            <a href="/email/inbox?page=<%= i %>"
+                                class="pagination-link <%= i === currentPage ? 'active' : '' %>">
+                                <%= i %>
+                            </a>
+                            <% } %>
+
+                                <% if (currentPage < totalPages) { %>
+                                    <a href="/email/inbox?page=<%= currentPage + 1 %>" class="pagination-link">Next</a>
+                                    <% } %>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Format the email date/time
+            document.querySelectorAll(".email-time").forEach((element) => {
+                const timestamp = element.getAttribute("data-timestamp");
+                const emailDate = new Date(timestamp);
+                const now = new Date();
+                const timeDifference = now - emailDate;
+                const oneDay = 24 * 60 * 60 * 1000;
+
+                if (timeDifference < oneDay) {
+                    const hours = emailDate.getHours();
+                    const minutes = emailDate.getMinutes().toString().padStart(2, "0");
+                    const period = hours >= 12 ? "PM" : "AM";
+                    const formattedHour = hours % 12 || 12;
+                    element.textContent = `${formattedHour}:${minutes} ${period}`;
+                } else {
+                    const options = { month: "short", day: "numeric" };
+                    element.textContent = emailDate.toLocaleDateString("en-US", options);
+                }
+            });
+
+            // Add event listener to each checkbox
+            document.getElementById("deleteButton").addEventListener("click", async () => {
+                const selectedEmails = Array.from(document.querySelectorAll(".email-checkbox:checked"))
+                    .map(checkbox => checkbox.closest(".email-item").getAttribute("data-email-id"));
+
+                if (selectedEmails.length === 0) {
+                    alert("Please select emails to delete.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch("/email/delete-emails", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ emailIds: selectedEmails })
+                    });
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        alert(errorText || "Failed to delete emails.");
+                        return;
+                    }
+
+                    const result = await response.json();
+                    alert(result.message || "Emails deleted successfully!");
+
+                    selectedEmails.forEach(id => {
+                        const emailElement = document.querySelector(`.email-item[data-email-id="${id}"]`);
+                        if (emailElement) emailElement.remove();
+                    });
+                } catch (error) {
+                    console.error("Error deleting emails:", error);
+                    alert("An error occurred while trying to delete emails.");
+                }
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>

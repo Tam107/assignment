@@ -1,0 +1,15 @@
+<h2>Outbox - <%= user.fullname %>
+</h2>
+<a href="/logout">Sign out</a>
+<ul>
+    <% emails.forEach(email=> { %>
+        <li>
+            To: <%= email.receiver %> |
+                <a href="/email/<%= email.id %>">
+                    <%= email.subject %>
+                </a> |
+                <%= email.created_at %>
+        </li>
+        <% }); %>
+</ul>
+<a href="/email/compose">Compose Email</a> | <a href="/email/inbox">Inbox</a>

@@ -1,0 +1,180 @@
+/* inbox.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.content {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  gap: 0.5em;
+}
+
+.inbox-container {
+  flex: 3;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 1rem;
+}
+
+.inbox-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.logout-link {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+  float: right;
+  margin-top: -10px;
+}
+
+/* Table styling */
+.email-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed; /* Ensures columns take up equal space */
+}
+
+.email-table th,
+.email-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.email-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
+
+/* Define specific column widths for alignment */
+.email-table th:first-child,
+.email-table td:first-child {
+  width: 5%;
+  text-align: center;
+}
+
+.email-table th:nth-child(2),
+.email-table td:nth-child(2) {
+  width: 20%;
+}
+
+.email-table th:nth-child(3),
+.email-table td:nth-child(3) {
+  width: 55%;
+}
+
+.email-table th:nth-child(4),
+.email-table td:nth-child(4) {
+  width: 20%;
+  text-align: right;
+}
+
+.email-sender {
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.email-subject {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.email-time {
+  font-size: 0.9em;
+  color: #888;
+}
+
+/* Button styling */
+.delete-button {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 8px 16px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+/* Side-bar styling */
+.side-bar {
+  flex: -1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-bar a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  margin: 5px 0;
+  width: 100%;
+  text-align: center;
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.side-bar a:hover {
+  background-color: #e0e0e0;
+}
+
+/* Pagination styling */
+.inbox-container .pagination {
+  align-items: end;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination-link {
+  color: #3498db;
+  padding: 8px 12px;
+  margin: 0 4px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.pagination-link:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination-link.active {
+  background-color: #3498db;
+  color: #ffffff;
+  border-color: #3498db;
+}

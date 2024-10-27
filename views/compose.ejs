@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/styles/compose.css">
+    <title>Compose Email</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Compose Email - <%= user.fullname %>
+        </h2>
+
+        <% if (error) { %>
+            <p class="error" style="color: red;">
+                <%= error %>
+            </p>
+            <% } %>
+
+                <% if (success) { %>
+                    <p class="success" style="color: green;">
+                        <%= success %>
+                    </p>
+                    <% } %>
+
+                        <form action="/email/compose" method="post" enctype="multipart/form-data">
+                            <label for="receiver">Recipient:</label>
+                            <select name="receiver" id="receiver" required>
+                                <option value="">Select recipient</option>
+                                <% users.forEach(receiver=> { %>
+                                    <option value="<%= receiver.id %>">
+                                        <%= receiver.fullname %> - <%= receiver.email %>
+                                    </option>
+                                    <% }); %>
+                            </select>
+
+                            <label for="subject">Subject:</label>
+                            <input type="text" name="subject" placeholder="Subject" id="subject">
+
+                            <label for="body">Body:</label>
+                            <textarea name="body" placeholder="Email body" id="body" required></textarea>
+
+                            <label for="attachment">Attachment:</label>
+                            <input type="file" name="attachment" id="attachment">
+                            <small>Max file size: 5MB</small>
+
+                            <button type="submit">Send</button>
+                        </form>
+
+                        <a href="/email/inbox">Back to Inbox</a>
+    </div>
+</body>
+
+</html>

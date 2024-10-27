@@ -1,0 +1,237 @@
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --first-color: #007bff; /* Primary button color */
+  --hover-color: #0056b3; /* Button hover color */
+  --text-color: #333; /* General text color */
+  --error-color: #e74c3c; /* Error message color */
+  --background-color: #f4f4f4; /* Background color for the page */
+}
+
+/*===== BASE STYLES =====*/
+body {
+  font-family: "Roboto", sans-serif; /* Font family */
+  background-color: var(--background-color); /* Background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 25vw; /* Wider for better form layout */
+  height: 40vh;
+  text-align: center;
+}
+
+/*===== FORM STYLES =====*/
+.form {
+  width: 100%;
+  height: 90%;
+}
+
+.form__title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem; /* Space below title */
+}
+
+.form__div {
+  position: relative;
+  margin-bottom: 1.5rem; /* Space below each input */
+}
+
+.form__text {
+  position: relative;
+  margin-bottom: 20px; /* Space below each input */
+}
+
+.form__label {
+  display: inline-block;
+  margin-bottom: 5px; /* Space below label */
+  color: var(--text-color); /* Label color */
+}
+
+.form__input {
+  width: 90%; /* Full width of the container */
+  height: 25%;
+  padding: 10px; /* Padding for input */
+  border: 1px solid var(--text-color); /* Border for input */
+  border-radius: 5px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding and border in width */
+  font-size: 1rem; /* Font size */
+  transition: border-color 0.3s; /* Transition for border color */
+}
+
+/* Input Focus Effect */
+.form__input:focus {
+  border-color: var(--first-color); /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Icon Styles */
+.form__icon {
+  position: absolute;
+  left: 10px; /* Position icon inside the input */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  color: var(--text-color); /* Icon color */
+}
+
+/* Error Message Styles */
+.error {
+  color: var(--error-color); /* Error color */
+  font-weight: bold;
+  margin-bottom: 15px; /* Space below error message */
+}
+
+/* Button Styles */
+.form__button {
+  width: 90%; /* Full width */
+  padding: 10px; /* Padding */
+  background-color: var(--first-color); /* Background color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  font-size: 1rem; /* Font size */
+  transition: background-color 0.3s; /* Transition for hover effect */
+  margin-bottom: 0.2em;
+}
+
+/* Button Hover Effect */
+.form__button:hover {
+  background-color: var(--hover-color); /* Darker shade on hover */
+}
+
+/* Forgot Password Link Styles */
+.form__forgot {
+  display: block;
+  margin: 10px 0; /* Space above and below */
+  color: var(--text-color); /* Text color */
+  text-align: right; /* Align to the right */
+  font-size: 0.9rem; /* Font size */
+}
+
+.form__forgot:hover {
+  color: var(--first-color); /* Change color on hover */
+}
+
+/* Sign Up Prompt Styles */
+.form p {
+  font-size: 0.9rem;
+  margin-top: 1.3rem;
+  margin-bottom: 0.2em;
+}
+
+/* inbox */
+/*===== INBOX PAGE STYLES =====*/
+
+/* Inbox Container */
+.inbox-container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Inbox Title */
+.inbox-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+/* Logout Link */
+.logout-link {
+  display: block;
+  margin-bottom: 20px;
+  color: var(--first-color);
+  text-align: right;
+  text-decoration: none;
+}
+
+.logout-link:hover {
+  text-decoration: underline;
+}
+
+/* Email List */
+.email-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #ddd;
+}
+
+.email-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+.email-item:hover {
+  background-color: var(--background-color);
+}
+
+/* Checkbox */
+.email-checkbox {
+  margin-right: 10px;
+}
+
+/* Email Sender */
+.email-sender {
+  font-weight: 500;
+  flex-basis: 15%;
+  color: var(--text-color);
+}
+
+/* Email Details */
+.email-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.email-subject {
+  color: var(--text-color);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+.email-time {
+  flex-basis: 15%;
+  text-align: right;
+  font-size: 0.9rem;
+  color: gray;
+  min-width: 80px;
+}
+
+/* Compose and Outbox Links */
+.compose-link,
+.outbox-link {
+  color: var(--first-color);
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.compose-link:hover,
+.outbox-link:hover {
+  text-decoration: underline;
+}

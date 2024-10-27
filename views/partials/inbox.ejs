@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Inbox - <%= user.fullname %>
+    </title>
+</head>
+
+<body>
+    <div class="inbox-container">
+        <h2 class="inbox-title">Inbox - <%= user.fullname %>
+        </h2>
+        <a href="/logout" class="logout-link">Sign out</a>
+        <ul class="email-list">
+            <% emails.forEach(email=> { %>
+                <li class="email-item">
+                    <input type="checkbox" class="email-checkbox">
+                    <div class="email-sender">
+                        <%= email.sender %>
+                    </div>
+                    <div class="email-details">
+                        <a href="/email/<%= email.id %>" class="email-subject">
+                            <%= email.subject %>
+                        </a>
+                        <span class="email-time">
+                            <%= email.created_at %>
+                        </span>
+                    </div>
+                </li>
+                <% }); %>
+        </ul>
+        <a href="/email/compose" class="compose-link">Compose Email</a> | <a href="/email/outbox"
+            class="outbox-link">Outbox</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<h2>Compose Email - <%= user.fullname %>
+</h2>
+
+<!-- Display error message if it exists -->
+<% if (error) { %>
+    <p class="error" style="color: red; font-weight: bold;">
+        <%= error %>
+    </p>
+    <% } %>
+
+        <form action="/email/compose" method="post">
+            <select name="receiver" required>
+                <option value="">Select recipient</option>
+                <% users.forEach(user=> { %>
+                    <option value="<%= user.id %>">
+                        <%= user.fullname %> - <%= user.email %>
+                    </option>
+                    <% }); %>
+            </select>
+            <input type="text" name="subject" placeholder="Subject">
+            <textarea name="body" placeholder="Email body"></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <a href="/email/inbox">Back to Inbox</a>
