@@ -45,7 +45,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "wpr",
   password: "fit2024",
-  database: "wpr2201140077",
+  database: "",
   port: "3306",
 });
 
