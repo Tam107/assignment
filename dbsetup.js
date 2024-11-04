@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   multipleStatements: true,
 });
 
-const dbName = "wpr2201140077";
+const dbName = "";
 
 connection.connect((err) => {
   if (err) {
