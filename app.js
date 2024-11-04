@@ -6,7 +6,7 @@ const multer = require("multer");
 const fs = require("fs");
 const app = express();
 const authRoutes = require("./routes/auth");
-const emailRoutes = require("./routes/email");
+
 const apiRoutes = require("./routes/api");
 
 // Create uploads directory if it doesn't exist
@@ -79,7 +79,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
 
 // Use routes
 app.use("/", authRoutes);
-app.use("/email", emailRoutes);
+
 app.use("/api", apiRoutes);
 
 // 404 Route
